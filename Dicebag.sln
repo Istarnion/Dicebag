@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dicebag", "Dicebag\Dicebag.csproj", "{7CF9C553-0178-4BBF-8A3F-E68BE5ECAA34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dicebag.Test", "Dicebag.Test\Dicebag.Test.csproj", "{703339A2-9F3A-494B-B94B-1381B2271E8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CF9C553-0178-4BBF-8A3F-E68BE5ECAA34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF9C553-0178-4BBF-8A3F-E68BE5ECAA34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF9C553-0178-4BBF-8A3F-E68BE5ECAA34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF9C553-0178-4BBF-8A3F-E68BE5ECAA34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{703339A2-9F3A-494B-B94B-1381B2271E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{703339A2-9F3A-494B-B94B-1381B2271E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{703339A2-9F3A-494B-B94B-1381B2271E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{703339A2-9F3A-494B-B94B-1381B2271E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93EF26CB-F519-4BF0-A2EF-1141D8750E42}
+	EndGlobalSection
+EndGlobal
