@@ -11,7 +11,7 @@ namespace Dicebag.Test
             DiceRoller.Result result = DiceRoller.Roll(expression);
             Assert.AreEqual(1, result.Total);
             Assert.AreEqual(1, result.Modifier);
-            Assert.Equals(0, result.Rolls.Count);
+            Assert.AreEqual(0, result.Rolls.Count);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace Dicebag.Test
             DiceRoller.Result result = DiceRoller.Roll(expression);
             Assert.AreEqual(2895, result.Total);
             Assert.AreEqual(2895, result.Modifier);
-            Assert.Equals(0, result.Rolls.Count);
+            Assert.AreEqual(0, result.Rolls.Count);
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace Dicebag.Test
             Assert.Less(0, result.Total);
             Assert.Greater(20, result.Total);
             Assert.AreEqual(0, result.Modifier);
-            Assert.Equals(1, result.Rolls.Count);
+            Assert.AreEqual(1, result.Rolls.Count);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Dicebag.Test
             Assert.Less(0, result.Total);
             Assert.Greater(20, result.Total);
             Assert.AreEqual(0, result.Modifier);
-            Assert.Equals(1, result.Rolls.Count);
+            Assert.AreEqual(1, result.Rolls.Count);
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace Dicebag.Test
             Assert.Less(5, result.Total);
             Assert.Greater(25, result.Total);
             Assert.AreEqual(5, result.Modifier);
-            Assert.Equals(1, result.Rolls.Count);
+            Assert.AreEqual(1, result.Rolls.Count);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Dicebag.Test
             Assert.Less(1, result.Total);
             Assert.Greater(27, result.Total);
             Assert.AreEqual(0, result.Modifier);
-            Assert.Equals(2, result.Rolls.Count);
+            Assert.AreEqual(2, result.Rolls.Count);
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace Dicebag.Test
             Assert.Less(1, result.Total);
             Assert.Greater(21, result.Total);
             Assert.AreEqual(0, result.Modifier);
-            Assert.Equals(2, result.Rolls.Count);
+            Assert.AreEqual(2, result.Rolls.Count);
         }
     }
 }
