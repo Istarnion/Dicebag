@@ -62,24 +62,6 @@ namespace Dicebag
                 throw new Exception(string.Format("[ERROR]: ({0}) {1}\n\t{2}\n\t{3}", offset, errorMessage, diceExpression, errorPosition));
             }
 
-            bool EOF()
-            {
-                return offset >= diceExpression.Length;
-            }
-
-            bool Expect(char c)
-            {
-                if(diceExpression[offset] == c)
-                {
-                    ++offset;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
             char Peek()
             {
                 return diceExpression[offset];
@@ -92,9 +74,38 @@ namespace Dicebag
                 return result;
             }
 
+            bool EOF()
+            {
+                return offset >= diceExpression.Length;
+            }
+
+            void GobbleWhitespace()
+            {
+                while(!EOF() && char.IsWhiteSpace(Peek()))
+                {
+                    ++offset;
+                }
+            }
+
+            bool Expect(char c)
+            {
+                GobbleWhitespace();
+                if(diceExpression[offset] == c)
+                {
+                    ++offset;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+
             int ConsumeNumber()
             {
                 int result = 0;
+                GobbleWhitespace();
                 while(!EOF() && char.IsDigit(Peek()))
                 {
                     char c = Pop();
@@ -122,13 +133,15 @@ namespace Dicebag
             {
                 var result = new ExpressionParseResult();
 
+                GobbleWhitespace();
                 if(char.IsDigit(Peek()))
                 {
                     int number = ConsumeNumber();
+                    GobbleWhitespace();
 
                     if(!EOF() && Peek() == 'd')
                     {
-                        Pop();
+                        ++offset;
                         int number2 = ExpectNonZeroNumber();
 
                         result.NumDice = number;
@@ -164,31 +177,55 @@ namespace Dicebag
                 return result;
             }
 
-            // [roll] ::= [expression]((+|-)[expression])*
-            var expressionResult = ConsumeExpression();
+            // This is for iterations of the do..while loop other than the first one.
+            // It gets set to 1 or -1 depending on the connection operator being + or -,
+            int sign = 1;
 
-            result.Modifier += expressionResult.Constant;
-
-            if(expressionResult.NumDice > 0)
+            do
             {
-                string dieKey = "d" + expressionResult.DiceFaces;
-                var results = new List<int>(expressionResult.NumDice);
-                for(int i=0; i<expressionResult.NumDice; ++i)
-                {
-                    int roll = RollDice(expressionResult.DiceFaces);
-                    results.Add(roll);
-                    result.Total += roll;
-                }
+                var expressionResult = ConsumeExpression();
 
-                if(result.Rolls.ContainsKey(dieKey))
+                if (expressionResult.NumDice > 0)
                 {
-                    result.Rolls[dieKey].AddRange(results);
+                    string dieKey = "d" + expressionResult.DiceFaces;
+                    var results = new List<int>(expressionResult.NumDice);
+                    for (int i = 0; i < expressionResult.NumDice; ++i)
+                    {
+                        int roll = RollDice(expressionResult.DiceFaces);
+                        results.Add(roll);
+                        result.Total += roll * sign;
+                    }
+
+                    if (result.Rolls.ContainsKey(dieKey))
+                    {
+                        result.Rolls[dieKey].AddRange(results);
+                    }
+                    else
+                    {
+                        result.Rolls[dieKey] = results;
+                    }
                 }
                 else
                 {
-                    result.Rolls[dieKey] = results;
+                    result.Modifier += expressionResult.Constant * sign;
+                }
+
+                GobbleWhitespace();
+                if (!EOF())
+                {
+                    if (Peek() == '+')
+                    {
+                        ++offset;
+                        sign = 1;
+                    }
+                    else if (Peek() == '-')
+                    {
+                        ++offset;
+                        sign = -1;
+                    }
                 }
             }
+            while (!EOF());
 
             result.Total += result.Modifier;
 

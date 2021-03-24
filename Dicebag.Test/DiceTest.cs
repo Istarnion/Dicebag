@@ -58,6 +58,17 @@ namespace Dicebag.Test
         }
 
         [Test]
+        public void WhitespaceStress()
+        {
+            string expression = "   1     d      20 +    5      ";
+            DiceRoller.Result result = DiceRoller.Roll(expression);
+            Assert.Less(5, result.Total);
+            Assert.Greater(25, result.Total);
+            Assert.AreEqual(5, result.Modifier);
+            Assert.AreEqual(1, result.Rolls.Count);
+        }
+
+        [Test]
         public void CompondRoll()
         {
             string expression = "1d20+2d6";
