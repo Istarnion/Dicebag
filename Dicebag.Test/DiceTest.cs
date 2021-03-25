@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace Dicebag.Test
 {
@@ -88,6 +89,51 @@ namespace Dicebag.Test
             Assert.Greater(21, result.Total);
             Assert.AreEqual(0, result.Modifier);
             Assert.AreEqual(2, result.Rolls.Count);
+        }
+
+        [Test]
+        public void EmptyInput()
+        {
+            string expression = "";
+            try
+            {
+                DiceRoller.Result result = DiceRoller.Roll(expression);
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void NullInput()
+        {
+            string expression = null;
+            try
+            {
+                DiceRoller.Result result = DiceRoller.Roll(expression);
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void BadInput()
+        {
+            string expression = "This is not a dice roll expression";
+            try
+            {
+                DiceRoller.Result result = DiceRoller.Roll(expression);
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Pass();
+            }
         }
     }
 }
