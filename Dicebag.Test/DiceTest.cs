@@ -100,10 +100,12 @@ namespace Dicebag.Test
                 DiceRoller.Result result = DiceRoller.Roll(expression);
                 Assert.Fail();
             }
-            catch
+            catch(DiceRollException _)
             {
                 Assert.Pass();
             }
+
+            Assert.Fail();
         }
 
         [Test]
@@ -115,10 +117,12 @@ namespace Dicebag.Test
                 DiceRoller.Result result = DiceRoller.Roll(expression);
                 Assert.Fail();
             }
-            catch
+            catch(DiceRollException _)
             {
                 Assert.Pass();
             }
+
+            Assert.Fail();
         }
 
         [Test]
@@ -130,10 +134,12 @@ namespace Dicebag.Test
                 DiceRoller.Result result = DiceRoller.Roll(expression);
                 Assert.Fail();
             }
-            catch
+            catch(DiceRollException _)
             {
                 Assert.Pass();
             }
+
+            Assert.Fail();
         }
     }
 }

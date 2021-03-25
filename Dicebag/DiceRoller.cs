@@ -3,6 +3,18 @@ using System.Collections.Generic;
 
 namespace Dicebag
 {
+    public class DiceRollException : Exception
+    {
+        public string Expression { get; private set; }
+        public int Offset { get; private set; }
+
+        public DiceRollException(string message, string expression, int offset) : base(message)
+        {
+            Expression = expression ?? "";
+            Offset = offset;
+        }
+    }
+
     /// <summary>
     /// Simple too for rolling dice expressions such as 1d20, 4d6+2 etc
     /// </summary>
@@ -50,7 +62,7 @@ namespace Dicebag
         {
             if(string.IsNullOrWhiteSpace(diceExpression))
             {
-                throw new Exception("[ERROR]: The roll expression is empty.");
+                throw new DiceRollException("[ERROR]: The roll expression is empty.", diceExpression, 0);
             }
 
             diceExpression = diceExpression.Trim();
@@ -58,8 +70,7 @@ namespace Dicebag
 
             void Panic(string errorMessage)
             {
-                string errorPosition = new string(' ', offset) + "^";
-                throw new Exception(string.Format("[ERROR]: ({0}) {1}\n\t{2}\n\t{3}", offset, errorMessage, diceExpression, errorPosition));
+                throw new DiceRollException(errorMessage, diceExpression, offset);
             }
 
             char Peek()
