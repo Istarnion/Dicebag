@@ -60,7 +60,7 @@ namespace Dicebag
 
         public static Result Roll(string diceExpression)
         {
-            if(string.IsNullOrWhiteSpace(diceExpression))
+            if (string.IsNullOrWhiteSpace(diceExpression))
             {
                 throw new DiceRollException("[ERROR]: The roll expression is empty.", diceExpression, 0);
             }
@@ -92,7 +92,7 @@ namespace Dicebag
 
             void GobbleWhitespace()
             {
-                while(!EOF() && char.IsWhiteSpace(Peek()))
+                while (!EOF() && char.IsWhiteSpace(Peek()))
                 {
                     ++offset;
                 }
@@ -101,7 +101,7 @@ namespace Dicebag
             bool Expect(char c)
             {
                 GobbleWhitespace();
-                if(diceExpression[offset] == c)
+                if (diceExpression[offset] == c)
                 {
                     ++offset;
                     return true;
@@ -117,7 +117,7 @@ namespace Dicebag
             {
                 int result = 0;
                 GobbleWhitespace();
-                while(!EOF() && char.IsDigit(Peek()))
+                while (!EOF() && char.IsDigit(Peek()))
                 {
                     char c = Pop();
                     int i = c - '0';
@@ -131,7 +131,7 @@ namespace Dicebag
             {
                 int result = ConsumeNumber();
 
-                if(result <= 0)
+                if (result <= 0)
                 {
                     Panic("Expected a non-zero number.");
                 }
@@ -145,12 +145,12 @@ namespace Dicebag
                 var result = new ExpressionParseResult();
 
                 GobbleWhitespace();
-                if(char.IsDigit(Peek()))
+                if (char.IsDigit(Peek()))
                 {
                     int number = ConsumeNumber();
                     GobbleWhitespace();
 
-                    if(!EOF() && Peek() == 'd')
+                    if (!EOF() && Peek() == 'd')
                     {
                         ++offset;
                         int number2 = ExpectNonZeroNumber();
@@ -163,7 +163,7 @@ namespace Dicebag
                         result.Constant = number;
                     }
                 }
-                else if(Expect('d'))
+                else if (Expect('d'))
                 {
                     int number2 = ExpectNonZeroNumber();
 

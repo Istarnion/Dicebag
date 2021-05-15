@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using System;
 
 namespace Dicebag.Test
 {
@@ -100,7 +99,7 @@ namespace Dicebag.Test
                 DiceRoller.Result result = DiceRoller.Roll(expression);
                 Assert.Fail();
             }
-            catch(DiceRollException _)
+            catch (DiceRollException)
             {
                 Assert.Pass();
             }
@@ -117,7 +116,7 @@ namespace Dicebag.Test
                 DiceRoller.Result result = DiceRoller.Roll(expression);
                 Assert.Fail();
             }
-            catch(DiceRollException _)
+            catch (DiceRollException)
             {
                 Assert.Pass();
             }
@@ -134,7 +133,7 @@ namespace Dicebag.Test
                 DiceRoller.Result result = DiceRoller.Roll(expression);
                 Assert.Fail();
             }
-            catch(DiceRollException _)
+            catch (DiceRollException)
             {
                 Assert.Pass();
             }
