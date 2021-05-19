@@ -16,7 +16,7 @@ namespace Dicebag
     }
 
     /// <summary>
-    /// Simple too for rolling dice expressions such as 1d20, 4d6+2 etc
+    /// Simple tool for rolling dice expressions such as 1d20, 4d6+2 etc
     /// </summary>
     /// <remarks>
     /// Dice expression BNF:
