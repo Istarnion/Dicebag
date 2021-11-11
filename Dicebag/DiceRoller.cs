@@ -20,7 +20,7 @@ namespace Dicebag
     /// </summary>
     /// <remarks>
     /// Dice expression BNF:
-    ///            [roll] ::= [expression]((+|-)[expression])*
+    ///            [roll] ::= (+|-)?[expression]((+|-)[expression])*
     ///      [expression] ::= [number]|[dice-expression]
     /// [dice-expression] ::= [number]?d[number]
     ///
