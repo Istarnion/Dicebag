@@ -189,5 +189,20 @@ namespace Dicebag.Test
                 Assert.Fail();
             }
         }
+
+        [Test]
+        public void ExplicitPositiveExpression()
+        {
+            string expression = "+1d20";
+            try
+            {
+                DiceRoller.Result result = DiceRoller.Roll(expression);
+                Assert.Positive(result.Total);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
     }
 }
