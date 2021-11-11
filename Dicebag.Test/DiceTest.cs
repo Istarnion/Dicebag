@@ -163,6 +163,17 @@ namespace Dicebag.Test
 
             Assert.Fail();
         }
+
+        [Test]
+        public void ChainExpression()
+        {
+            // NOTE(istarnion): This is sort of an unintended feature.
+            // discuss with users and see if this is actually something
+            // we should reject as invalid syntax.
+            string expression = "1d1 - 1d1d100d100d100";
+            DiceRoller.Result result = DiceRoller.Roll(expression);
+            Assert.Greater(result.Total, 0);
+        }
     }
 }
 
