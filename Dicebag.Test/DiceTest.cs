@@ -47,6 +47,29 @@ namespace Dicebag.Test
         }
 
         [Test]
+        public void SimpleRollUppercase()
+        {
+            string expression = "1D20";
+            DiceRoller.Result result = DiceRoller.Roll(expression);
+            Assert.Less(0, result.Total);
+            Assert.Greater(20, result.Total);
+            Assert.AreEqual(0, result.Modifier);
+            Assert.AreEqual(1, result.Rolls.Count);
+        }
+
+        [Test]
+        public void SimpleRollShorthandUppercase()
+        {
+            string expression = "D20";
+            DiceRoller.Result result = DiceRoller.Roll(expression);
+            Assert.Less(0, result.Total);
+            Assert.Greater(20, result.Total);
+            Assert.AreEqual(0, result.Modifier);
+            Assert.AreEqual(1, result.Rolls.Count);
+        }
+
+
+        [Test]
         public void RollWithModifier()
         {
             string expression = "1d20+5";
