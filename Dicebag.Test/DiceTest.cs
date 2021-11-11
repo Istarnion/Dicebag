@@ -182,7 +182,7 @@ namespace Dicebag.Test
             try
             {
                 DiceRoller.Result result = DiceRoller.Roll(expression);
-                Assert.Pass();
+                Assert.Negative(result.Total);
             }
             catch
             {

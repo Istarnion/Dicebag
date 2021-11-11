@@ -198,9 +198,19 @@ namespace Dicebag
                 return result;
             }
 
-            // This is for iterations of the do..while loop other than the first one.
-            // It gets set to 1 or -1 depending on the connection operator being + or -,
-            int sign = 1;
+            int sign = 1; // The sign of the "connecting operator"
+
+            // Expressions might start with an '-' or an explicit '+'
+            // that we should allow.
+            if(Peek() == '-')
+            {
+                sign = -1;
+                ++offset;
+            }
+            else if(Peek() == '+')
+            {
+                ++offset;
+            }
 
             do
             {
@@ -246,6 +256,8 @@ namespace Dicebag
                     }
                     else
                     {
+                        // NOTE(istarnion): Panic here if we
+                        // don't want to allow chain expressions
                         sign = 1;
                     }
                 }
