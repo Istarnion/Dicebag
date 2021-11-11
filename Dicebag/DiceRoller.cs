@@ -24,7 +24,7 @@ namespace Dicebag
     ///      [expression] ::= [number]|[dice-expression]
     /// [dice-expression] ::= [number]?d[number]
     ///
-    /// Any whitespace is ignored
+    /// Any whitespace is ignored. Both 'd' and 'D' are supported.
     /// </remarks>
     public static class DiceRoller
     {
@@ -58,19 +58,29 @@ namespace Dicebag
             public int DiceFaces;
         }
 
-        public static Result Roll(string diceExpression)
+        public static Result Roll(string expression)
         {
-            if (string.IsNullOrWhiteSpace(diceExpression))
+            if (string.IsNullOrWhiteSpace(expression))
             {
-                throw new DiceRollException("[ERROR]: The roll expression is empty.", diceExpression, 0);
+                throw new DiceRollException("[ERROR]: The roll expression is empty.", expression, 0);
             }
 
-            diceExpression = diceExpression.Trim();
+            char[] diceExpression = expression.Trim().ToCharArray();
+
+            for(int i=0; i<diceExpression.Length; ++i)
+            {
+                char c = diceExpression[i];
+                if(c == 'D')
+                {
+                    diceExpression[i] = 'd';
+                }
+            }
+
             int offset = 0;
 
             void Panic(string errorMessage)
             {
-                throw new DiceRollException(errorMessage, diceExpression, offset);
+                throw new DiceRollException(errorMessage, expression, offset);
             }
 
             char Peek()
@@ -244,4 +254,3 @@ namespace Dicebag
         }
     }
 }
-
