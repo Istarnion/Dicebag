@@ -172,8 +172,22 @@ namespace Dicebag.Test
             // we should reject as invalid syntax.
             string expression = "1d1 - 1d1d100d100d100";
             DiceRoller.Result result = DiceRoller.Roll(expression);
-            Assert.Greater(result.Total, 0);
+            Assert.Positive(result.Total);
+        }
+
+        [Test]
+        public void NegativeExpression()
+        {
+            string expression = "-1d20";
+            try
+            {
+                DiceRoller.Result result = DiceRoller.Roll(expression);
+                Assert.Pass();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
         }
     }
 }
-
