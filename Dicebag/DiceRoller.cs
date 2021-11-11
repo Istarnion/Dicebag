@@ -244,6 +244,10 @@ namespace Dicebag
                         ++offset;
                         sign = -1;
                     }
+                    else
+                    {
+                        sign = 1;
+                    }
                 }
             }
             while (!EOF());
