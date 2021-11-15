@@ -93,7 +93,7 @@ namespace Dicebag.Test
         }
 
         [Test]
-        public void CompondRoll()
+        public void CompoundRoll()
         {
             string expression = "1d20+2d6";
             DiceRoller.Result result = DiceRoller.Roll(expression);
