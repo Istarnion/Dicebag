@@ -35,8 +35,7 @@ namespace Dicebag.Test
         {
             const string expression = "1d20";
             var result = DiceRoller.Roll(expression);
-            Assert.Less(0, result.Total);
-            Assert.Greater(20, result.Total);
+            AssertRange(result.Total, 1, 20);
             Assert.AreEqual(0, result.Modifier);
             Assert.AreEqual(1, result.Rolls.Count);
         }
