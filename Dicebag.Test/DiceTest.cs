@@ -4,6 +4,12 @@ namespace Dicebag.Test
 {
     public class DiceTests
     {
+        private static void AssertRange(int total, int low, int high)
+        {
+           Assert.LessOrEqual(low, total);
+           Assert.GreaterOrEqual(high, total);
+        }
+        
         [Test]
         public void SingleDigitNumber()
         {
@@ -40,8 +46,7 @@ namespace Dicebag.Test
         {
             string expression = "d20";
             DiceRoller.Result result = DiceRoller.Roll(expression);
-            Assert.Less(0, result.Total);
-            Assert.Greater(20, result.Total);
+            AssertRange(result.Total, 1, 20);
             Assert.AreEqual(0, result.Modifier);
             Assert.AreEqual(1, result.Rolls.Count);
         }
@@ -51,8 +56,7 @@ namespace Dicebag.Test
         {
             string expression = "1D20";
             DiceRoller.Result result = DiceRoller.Roll(expression);
-            Assert.Less(0, result.Total);
-            Assert.Greater(20, result.Total);
+            AssertRange(result.Total, 1, 20);
             Assert.AreEqual(0, result.Modifier);
             Assert.AreEqual(1, result.Rolls.Count);
         }
@@ -62,8 +66,7 @@ namespace Dicebag.Test
         {
             string expression = "D20";
             DiceRoller.Result result = DiceRoller.Roll(expression);
-            Assert.Less(0, result.Total);
-            Assert.Greater(20, result.Total);
+            AssertRange(result.Total, 1, 20);
             Assert.AreEqual(0, result.Modifier);
             Assert.AreEqual(1, result.Rolls.Count);
         }
@@ -74,8 +77,7 @@ namespace Dicebag.Test
         {
             string expression = "1d20+5";
             DiceRoller.Result result = DiceRoller.Roll(expression);
-            Assert.Less(5, result.Total);
-            Assert.Greater(25, result.Total);
+            AssertRange(result.Total, 6, 25);
             Assert.AreEqual(5, result.Modifier);
             Assert.AreEqual(1, result.Rolls.Count);
         }
@@ -85,8 +87,7 @@ namespace Dicebag.Test
         {
             string expression = "   1     d      20 +    5      ";
             DiceRoller.Result result = DiceRoller.Roll(expression);
-            Assert.Less(5, result.Total);
-            Assert.Greater(25, result.Total);
+            AssertRange(result.Total, 6, 25);
             Assert.AreEqual(5, result.Modifier);
             Assert.AreEqual(1, result.Rolls.Count);
         }
@@ -96,8 +97,7 @@ namespace Dicebag.Test
         {
             string expression = "1d20+2d6";
             DiceRoller.Result result = DiceRoller.Roll(expression);
-            Assert.Less(1, result.Total);
-            Assert.Greater(27, result.Total);
+            AssertRange(result.Total, 3, 32);
             Assert.AreEqual(0, result.Modifier);
             Assert.AreEqual(2, result.Rolls.Count);
         }
@@ -107,8 +107,7 @@ namespace Dicebag.Test
         {
             string expression = "d12+d8";
             DiceRoller.Result result = DiceRoller.Roll(expression);
-            Assert.Less(1, result.Total);
-            Assert.Greater(21, result.Total);
+            AssertRange(result.Total, 2, 20);
             Assert.AreEqual(0, result.Modifier);
             Assert.AreEqual(2, result.Rolls.Count);
         }
