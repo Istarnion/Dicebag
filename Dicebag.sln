@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dicebag", "Dicebag\Dicebag.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dicebag.Test", "Dicebag.Test\Dicebag.Test.csproj", "{703339A2-9F3A-494B-B94B-1381B2271E8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "Benchmarks\Benchmarks.csproj", "{DC99FADA-9396-47CE-B03D-80538F007D63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{703339A2-9F3A-494B-B94B-1381B2271E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{703339A2-9F3A-494B-B94B-1381B2271E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{703339A2-9F3A-494B-B94B-1381B2271E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC99FADA-9396-47CE-B03D-80538F007D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC99FADA-9396-47CE-B03D-80538F007D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC99FADA-9396-47CE-B03D-80538F007D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC99FADA-9396-47CE-B03D-80538F007D63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
