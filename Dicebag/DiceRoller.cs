@@ -28,6 +28,8 @@ public sealed class DiceRollException : Exception
 /// </remarks>
 public static class DiceRoller
 {
+    private static readonly Random Rng = new();
+
     /// <summary>
     /// Holds the result of a roll.
     /// </summary>
@@ -186,13 +188,12 @@ public static class DiceRoller
             return result;
         }
 
-        var rng = new Random();
         var result = new Result();
         result.Rolls = new Dictionary<string, List<int>>();
 
         int RollDice(int numFaces)
         {
-            int result = 1 + rng.Next(numFaces);
+            int result = 1 + Rng.Next(numFaces);
             return result;
         }
 
