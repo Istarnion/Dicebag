@@ -226,9 +226,9 @@ public static class DiceRoller
                     result.Total += roll * sign;
                 }
 
-                if (result.Rolls.ContainsKey(dieKey))
+                if (result.Rolls.TryGetValue(dieKey, out var value))
                 {
-                    result.Rolls[dieKey].AddRange(results);
+                    value.AddRange(results);
                 }
                 else
                 {
