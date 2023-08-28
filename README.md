@@ -7,6 +7,9 @@ Syntax errors (including empty or null input) are reported in the Message of thr
 
 No dependencies.
 
+## Requirements
+[.NET 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
+
 ## Usage
 `DiceRoller.Result result = DiceRoller.Roll(<dice expression>);`
 The `DiceRoller.Result` class contains the total number rolled, the sum of all modifiers, as well as a record of all dice throws made.
