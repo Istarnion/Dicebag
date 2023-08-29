@@ -218,21 +218,23 @@ public static class DiceRoller
             if (expressionResult.NumDice > 0)
             {
                 string dieKey = "d" + expressionResult.DiceFaces;
-                var results = new List<int>(expressionResult.NumDice);
+                List<int> results;
+                result.Rolls.TryGetValue(dieKey, out results);
+                if(results == null)
+                {
+                    results = new List<int>(expressionResult.NumDice);
+                    result.Rolls[dieKey] = results;
+                }
+                else
+                {
+                    results.EnsureCapacity(results.Count + expressionResult.NumDice);
+                }
+
                 for (int i = 0; i < expressionResult.NumDice; ++i)
                 {
                     int roll = RollDice(expressionResult.DiceFaces);
                     results.Add(roll);
                     result.Total += roll * sign;
-                }
-
-                if (result.Rolls.TryGetValue(dieKey, out var value))
-                {
-                    value.AddRange(results);
-                }
-                else
-                {
-                    result.Rolls[dieKey] = results;
                 }
             }
             else
